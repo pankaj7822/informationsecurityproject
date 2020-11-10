@@ -1,0 +1,40 @@
+Add these lines as per requirment in nginx.conf 
+
+Limiting the Rate of Requests
+    location /login.html {
+        limit_req zone=one;
+    # ...
+    }
+    
+    
+ Limiting the Number of Connections
+ 
+location /store/ {
+        limit_conn addr 10;
+        # ...
+    }
+
+    
+Closing Slow Connections    
+
+    server {
+    client_body_timeout 5s;
+    client_header_timeout 5s;
+    # ...
+}
+
+
+
+Denylisting IP Addresses
+location / {
+    deny 123.123.123.0/28;
+    # ...
+}
+
+
+Allowlisting IP Addresses
+location / {
+    allow 192.168.1.0/24;
+    deny all;
+    # ...
+}
